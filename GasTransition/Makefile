@@ -36,7 +36,7 @@ error:
 	$(error Invalid configuration, please check your inputs)
 endif
 
-SOURCEFILES := ../Src/gpio.c ../Src/adc.c ../Src/dma.c ../Src/system_stm32f1xx.c ../Src/tim.c ../Src/usart.c ../Src/stm32f1xx_it.c ../Src/stm32f1xx_hal_msp.c ../Src/main.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c $(BSP_ROOT)/STM32F1xxxx/StartupFiles/startup_stm32f103xb.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c
+SOURCEFILES := ../Src/gpio.c ../Src/adc.c ../Src/dma.c ../Src/system_stm32f1xx.c ../Src/tim.c ../Src/usart.c ../Src/stm32f1xx_it.c ../Src/stm32f1xx_hal_msp.c ../Src/main.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c $(BSP_ROOT)/STM32F1xxxx/StartupFiles/startup_stm32f103xb.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c ../Src/iwdg.c ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_iwdg.c
 EXTERNAL_LIBS := 
 EXTERNAL_LIBS_COPIED := $(foreach lib, $(EXTERNAL_LIBS),$(BINARYDIR)/$(notdir $(lib)))
 
@@ -279,5 +279,13 @@ $(BINARYDIR)/startup_stm32f103xb.o : $(BSP_ROOT)/STM32F1xxxx/StartupFiles/startu
 
 
 $(BINARYDIR)/stm32f1xx_hal_gpio_ex.o : ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c $(all_make_files) |$(BINARYDIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -MD -MF $(@:.o=.dep)
+
+
+$(BINARYDIR)/iwdg.o : ../Src/iwdg.c $(all_make_files) |$(BINARYDIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -MD -MF $(@:.o=.dep)
+
+
+$(BINARYDIR)/stm32f1xx_hal_iwdg.o : ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_iwdg.c $(all_make_files) |$(BINARYDIR)
 	$(CC) $(CFLAGS) -c $< -o $@ -MD -MF $(@:.o=.dep)
 

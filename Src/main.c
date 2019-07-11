@@ -22,6 +22,7 @@
 #include "main.h"
 #include "adc.h"
 #include "dma.h"
+#include "iwdg.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -98,13 +99,10 @@ static void gasCollect() {
 
 	for (uint8_t i = 0; i < 7; i++)
 	{
-
-		//gasTemp[i] = (uint16_t)((ADC_Average[i] / 100) * 999 / 3255);
 		gasTemp[i] = ADC_Average[i] * 10 / 4095;
-		//	printf("%d  ", gasTemp[i]);
 		ADC_Average[i] = 0;
 	}
-	//printf("\n");
+
 
 	if ((gasTemp[0] >= 200) && (gasTemp[0] <= 400))		//ÑõÆøÇ·Ñ¹							
 	{
@@ -328,6 +326,7 @@ int main(void)
   MX_ADC1_Init();
   MX_USART1_UART_Init();
   MX_TIM3_Init();
+  MX_IWDG_Init();
   /* USER CODE BEGIN 2 */
 
   HAL_ADCEx_Calibration_Start(&hadc1);
@@ -349,6 +348,7 @@ int main(void)
 		  messageSendFlag = 0;
 		  sendDataMaster16();
 	  }
+	  HAL_IWDG_Refresh(&hiwdg);
   }
   /* USER CODE END 3 */
 }
@@ -365,10 +365,11 @@ void SystemClock_Config(void)
 
   /** Initializes the CPU, AHB and APB busses clocks 
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_LSI|RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;

@@ -45,7 +45,7 @@
     <AllDependencies>
       <ProjectDependency>
         <RelativePath>..\GasTransition.gpdsc</RelativePath>
-        <Timestamp>132070455500587206</Timestamp>
+        <Timestamp>132072874994456893</Timestamp>
       </ProjectDependency>
     </AllDependencies>
     <RootDirectory>
@@ -104,6 +104,17 @@
                 </VirtualFileSnapshot>
                 <VirtualFileSnapshot>
                   <RelativePath>..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_adc_ex.c</RelativePath>
+                </VirtualFileSnapshot>
+              </Files>
+            </VirtualDirectorySnapshot>
+            <VirtualDirectorySnapshot>
+              <Name>IWDG</Name>
+              <Files>
+                <VirtualFileSnapshot>
+                  <RelativePath>..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_iwdg.h</RelativePath>
+                </VirtualFileSnapshot>
+                <VirtualFileSnapshot>
+                  <RelativePath>..\Drivers\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_iwdg.c</RelativePath>
                 </VirtualFileSnapshot>
               </Files>
             </VirtualDirectorySnapshot>
@@ -237,6 +248,9 @@
           <RelativePath>..\Inc\dma.h</RelativePath>
         </VirtualFileSnapshot>
         <VirtualFileSnapshot>
+          <RelativePath>..\Inc\iwdg.h</RelativePath>
+        </VirtualFileSnapshot>
+        <VirtualFileSnapshot>
           <RelativePath>..\Inc\tim.h</RelativePath>
         </VirtualFileSnapshot>
         <VirtualFileSnapshot>
@@ -261,6 +275,9 @@
           <RelativePath>..\Src\dma.c</RelativePath>
         </VirtualFileSnapshot>
         <VirtualFileSnapshot>
+          <RelativePath>..\Src\iwdg.c</RelativePath>
+        </VirtualFileSnapshot>
+        <VirtualFileSnapshot>
           <RelativePath>..\Src\tim.c</RelativePath>
         </VirtualFileSnapshot>
         <VirtualFileSnapshot>
@@ -281,11 +298,11 @@
       <ImportedConfiguration>
         <Settings>
           <IncludeDirectories>
-            <string>C:\Users\K\Desktop\Stm32VS\GasTransition\Inc</string>
-            <string>C:\Users\K\Desktop\Stm32VS\GasTransition\Drivers\CMSIS\Device\ST\STM32F1xx\Include</string>
-            <string>C:\Users\K\Desktop\Stm32VS\GasTransition\Drivers\STM32F1xx_HAL_Driver\Inc</string>
-            <string>C:\Users\K\Desktop\Stm32VS\GasTransition\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy</string>
-            <string>C:\Users\K\Desktop\Stm32VS\GasTransition\Drivers\STM32F1xx_HAL_Driver\Src</string>
+            <string>C:\Users\K\Desktop\Stm32VS\GasTransition\GasTransition\..\Inc</string>
+            <string>C:\Users\K\Desktop\Stm32VS\GasTransition\GasTransition\..\Drivers\CMSIS\Device\ST\STM32F1xx\Include</string>
+            <string>C:\Users\K\Desktop\Stm32VS\GasTransition\GasTransition\..\Drivers\STM32F1xx_HAL_Driver\Inc</string>
+            <string>C:\Users\K\Desktop\Stm32VS\GasTransition\GasTransition\..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy</string>
+            <string>C:\Users\K\Desktop\Stm32VS\GasTransition\GasTransition\..\Drivers\STM32F1xx_HAL_Driver\Src</string>
           </IncludeDirectories>
           <PreprocessorMacros>
             <string>$$com.sysprogs.bspoptions.primary_memory$$_layout</string>

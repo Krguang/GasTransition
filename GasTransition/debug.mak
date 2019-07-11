@@ -6,7 +6,7 @@ BINARYDIR := Debug
 
 #Additional flags
 PREPROCESSOR_MACROS := DEBUG=1 flash_layout STM32F103xB
-INCLUDE_DIRS := ..\Inc ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include ..\Drivers\STM32F1xx_HAL_Driver\Inc ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy ..\Drivers\STM32F1xx_HAL_Driver\Src ../Drivers/CMSIS/Include
+INCLUDE_DIRS := ../Drivers/CMSIS/Include ..\Inc ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include ..\Drivers\STM32F1xx_HAL_Driver\Inc ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy ..\Drivers\STM32F1xx_HAL_Driver\Src
 LIBRARY_DIRS := 
 LIBRARY_NAMES := 
 ADDITIONAL_LINKER_INPUTS := 
@@ -29,4 +29,5 @@ CP_NOT_AVAILABLE := 1
 
 ADDITIONAL_MAKE_FILES := stm32.mak
 GENERATE_BIN_FILE := 1
-GENERATE_IHEX_FILE := 0
+GENERATE_IHEX_FILE := 1
+GENERATE_MAP_FILE :=0
