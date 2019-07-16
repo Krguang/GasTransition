@@ -30,6 +30,10 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#define GAS_START_LIMIT 100
+#define GAS_LOW_LIMIT 300
+#define GAS_HIGH_LIMIT 600
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -62,7 +66,7 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-uint8_t messageSendFlag;
+volatile uint8_t messageSendFlag;
 
 uint16_t LocalArray[10];
 
@@ -103,8 +107,7 @@ static void gasCollect() {
 		ADC_Average[i] = 0;
 	}
 
-
-	if ((gasTemp[0] >= 200) && (gasTemp[0] <= 400))		//ÑõÆøÇ·Ñ¹							
+	if ((gasTemp[0] >= GAS_START_LIMIT) && (gasTemp[0] <= GAS_LOW_LIMIT))		//ÑõÆøÇ·Ñ¹							
 	{
 		HAL_GPIO_WritePin(out1Low_GPIO_Port, out1Low_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(out1High_GPIO_Port, out1High_Pin, GPIO_PIN_RESET);
@@ -112,7 +115,7 @@ static void gasCollect() {
 		SET_BIT(LocalArray[0], 1 << 0);
 		CLEAR_BIT(LocalArray[0], 1 << 8);
 	}
-	else if (gasTemp[0] >= 900)							//ÑõÆø³¬Ñ¹
+	else if (gasTemp[0] >= GAS_HIGH_LIMIT)							//ÑõÆø³¬Ñ¹
 	{
 		HAL_GPIO_WritePin(out1Low_GPIO_Port, out1Low_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(out1High_GPIO_Port, out1High_Pin, GPIO_PIN_SET);
@@ -129,7 +132,7 @@ static void gasCollect() {
 		CLEAR_BIT(LocalArray[0], 1 << 8);
 	}
 
-	if ((gasTemp[1] >= 200) && (gasTemp[1] <= 400))		//ë²ÆøÇ·Ñ¹							
+	if ((gasTemp[1] >= GAS_START_LIMIT) && (gasTemp[1] <= GAS_LOW_LIMIT))		//ë²ÆøÇ·Ñ¹							
 	{
 		HAL_GPIO_WritePin(out2Low_GPIO_Port, out2Low_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(out2High_GPIO_Port, out2High_Pin, GPIO_PIN_RESET);
@@ -137,7 +140,7 @@ static void gasCollect() {
 		SET_BIT(LocalArray[0], 1 << 1);
 		CLEAR_BIT(LocalArray[0], 1 << 9);
 	}
-	else if (gasTemp[1] >= 900)							//ë²Æø³¬Ñ¹
+	else if (gasTemp[1] >= GAS_HIGH_LIMIT)							//ë²Æø³¬Ñ¹
 	{
 		HAL_GPIO_WritePin(out2Low_GPIO_Port, out2Low_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(out2High_GPIO_Port, out2High_Pin, GPIO_PIN_SET);
@@ -153,14 +156,14 @@ static void gasCollect() {
 	}
 
 
-	if ((gasTemp[2] >= 200) && (gasTemp[2] <= 400))		//Ð¦ÆøÇ·Ñ¹							
+	if ((gasTemp[2] >= GAS_START_LIMIT) && (gasTemp[2] <= GAS_LOW_LIMIT))		//Ð¦ÆøÇ·Ñ¹							
 	{
 		HAL_GPIO_WritePin(out3Low_GPIO_Port, out3Low_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(out3High_GPIO_Port, out3High_Pin, GPIO_PIN_RESET);
 		SET_BIT(LocalArray[0], 1 << 2);
 		CLEAR_BIT(LocalArray[0], 1 << 10);
 	}
-	else if (gasTemp[2] >= 900)							//Ð¦Æø³¬Ñ¹
+	else if (gasTemp[2] >= GAS_HIGH_LIMIT)							//Ð¦Æø³¬Ñ¹
 	{
 		HAL_GPIO_WritePin(out3Low_GPIO_Port, out3Low_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(out3High_GPIO_Port, out3High_Pin, GPIO_PIN_SET);
@@ -175,14 +178,14 @@ static void gasCollect() {
 		CLEAR_BIT(LocalArray[0], 1 << 10);
 	}
 
-	if ((gasTemp[3] >= 200) && (gasTemp[3] <= 400))		//µªÆøÇ·Ñ¹							
+	if ((gasTemp[3] >= GAS_START_LIMIT) && (gasTemp[3] <= GAS_LOW_LIMIT))		//µªÆøÇ·Ñ¹							
 	{
 		HAL_GPIO_WritePin(out4Low_GPIO_Port, out4Low_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(out4High_GPIO_Port, out4High_Pin, GPIO_PIN_RESET);
 		SET_BIT(LocalArray[0], 1 << 3);
 		CLEAR_BIT(LocalArray[0], 1 << 11);
 	}
-	else if (gasTemp[3] >= 900)							//µªÆø³¬Ñ¹
+	else if (gasTemp[3] >= GAS_HIGH_LIMIT)							//µªÆø³¬Ñ¹
 	{
 		HAL_GPIO_WritePin(out4Low_GPIO_Port, out4Low_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(out4High_GPIO_Port, out4High_Pin, GPIO_PIN_SET);
@@ -198,14 +201,14 @@ static void gasCollect() {
 	}
 
 
-	if ((gasTemp[4] >= 200) && (gasTemp[4] <= 400))		//¸ºÑ¹ÎüÒýÇ·Ñ¹							
+	if ((gasTemp[4] >= GAS_START_LIMIT) && (gasTemp[4] <= GAS_LOW_LIMIT))		//¸ºÑ¹ÎüÒýÇ·Ñ¹							
 	{
 		HAL_GPIO_WritePin(out5Low_GPIO_Port, out5Low_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(out5High_GPIO_Port, out5High_Pin, GPIO_PIN_RESET);
 		SET_BIT(LocalArray[0], 1 << 4);
 		CLEAR_BIT(LocalArray[0], 1 << 12);
 	}
-	else if (gasTemp[4] >= 900)							//¸ºÑ¹ÎüÒý³¬Ñ¹
+	else if (gasTemp[4] >= GAS_HIGH_LIMIT)							//¸ºÑ¹ÎüÒý³¬Ñ¹
 	{
 		HAL_GPIO_WritePin(out5Low_GPIO_Port, out5Low_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(out5High_GPIO_Port, out5High_Pin, GPIO_PIN_SET);
@@ -220,14 +223,14 @@ static void gasCollect() {
 		CLEAR_BIT(LocalArray[0], 1 << 12);
 	}
 
-	if ((gasTemp[5] >= 200) && (gasTemp[5] <= 400))		//Ñ¹Ëõ¿ÕÆøÇ·Ñ¹							
+	if ((gasTemp[5] >= GAS_START_LIMIT) && (gasTemp[5] <= GAS_LOW_LIMIT))		//Ñ¹Ëõ¿ÕÆøÇ·Ñ¹							
 	{
 		HAL_GPIO_WritePin(out6Low_GPIO_Port, out6Low_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(out6High_GPIO_Port, out6High_Pin, GPIO_PIN_RESET);
 		SET_BIT(LocalArray[0], 1 << 5);
 		CLEAR_BIT(LocalArray[0], 1 << 13);
 	}
-	else if (gasTemp[5] >= 900)							//Ñ¹Ëõ¿ÕÆø³¬Ñ¹
+	else if (gasTemp[5] >= GAS_HIGH_LIMIT)							//Ñ¹Ëõ¿ÕÆø³¬Ñ¹
 	{
 		HAL_GPIO_WritePin(out6Low_GPIO_Port, out6Low_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(out6High_GPIO_Port, out6High_Pin, GPIO_PIN_SET);
@@ -242,14 +245,14 @@ static void gasCollect() {
 		CLEAR_BIT(LocalArray[0], 1 << 13);
 	}
 
-	if ((gasTemp[6] >= 200) && (gasTemp[6] <= 400))		//¶þÑõ»¯Ì¼Ç·Ñ¹							
+	if ((gasTemp[6] >= GAS_START_LIMIT) && (gasTemp[6] <= GAS_LOW_LIMIT))		//¶þÑõ»¯Ì¼Ç·Ñ¹							
 	{
 		HAL_GPIO_WritePin(out7Low_GPIO_Port, out7Low_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(out7High_GPIO_Port, out7High_Pin, GPIO_PIN_RESET);
 		SET_BIT(LocalArray[0], 1 << 6);
 		CLEAR_BIT(LocalArray[0], 1 << 14);
 	}
-	else if (gasTemp[6] >= 900)							//¶þÑõ»¯Ì¼³¬Ñ¹
+	else if (gasTemp[6] >= GAS_HIGH_LIMIT)							//¶þÑõ»¯Ì¼³¬Ñ¹
 	{
 		HAL_GPIO_WritePin(out7Low_GPIO_Port, out7Low_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(out7High_GPIO_Port, out7High_Pin, GPIO_PIN_SET);
@@ -264,7 +267,6 @@ static void gasCollect() {
 		CLEAR_BIT(LocalArray[0], 1 << 14);
 	}
 }
-
 
 static void sendDataMaster16() {
 
@@ -404,8 +406,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if (htim->Instance == TIM3) {
 
-		//sendDataMaster16();
-		messageSendFlag = 1;
+			messageSendFlag = 1;
 	}
 }
 
