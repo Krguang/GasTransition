@@ -43,7 +43,6 @@ void MX_USART1_UART_Init(void)
   {
     Error_Handler();
   }
-
 }
 
 void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)

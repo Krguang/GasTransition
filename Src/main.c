@@ -201,7 +201,7 @@ static void gasCollect() {
 	}
 
 
-	if ((gasTemp[4] >= GAS_START_LIMIT) && (gasTemp[4] <= GAS_LOW_LIMIT))		//¸ºÑ¹ÎüÒýÇ·Ñ¹							
+	if ((gasTemp[4] >= GAS_START_LIMIT) && (gasTemp[4] <= GAS_LOW_LIMIT-50))		//¸ºÑ¹ÎüÒýÇ·Ñ¹							
 	{
 		HAL_GPIO_WritePin(out5Low_GPIO_Port, out5Low_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(out5High_GPIO_Port, out5High_Pin, GPIO_PIN_RESET);
