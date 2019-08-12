@@ -32,7 +32,7 @@
 
 #define GAS_START_LIMIT 100
 #define GAS_LOW_LIMIT 300
-#define GAS_HIGH_LIMIT 600
+#define GAS_HIGH_LIMIT 900
 
 /* USER CODE END Includes */
 
@@ -185,7 +185,7 @@ static void gasCollect() {
 		SET_BIT(LocalArray[0], 1 << 3);
 		CLEAR_BIT(LocalArray[0], 1 << 11);
 	}
-	else if (gasTemp[3] >= GAS_HIGH_LIMIT)							//µªÆø³¬Ñ¹
+	else if (gasTemp[3] >= GAS_HIGH_LIMIT+50)							//µªÆø³¬Ñ¹
 	{
 		HAL_GPIO_WritePin(out4Low_GPIO_Port, out4Low_Pin, GPIO_PIN_RESET);
 		HAL_GPIO_WritePin(out4High_GPIO_Port, out4High_Pin, GPIO_PIN_SET);
